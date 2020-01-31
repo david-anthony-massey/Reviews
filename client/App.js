@@ -12,9 +12,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { totalReviews: 32, id: 26, ratings: [] },
-      url: `http://localhost:3030/dist?productID=26`
+      totalReviews: 32,
+      id: 26,
+      ratings: []
     };
+
+    this.url = `http://localhost:3030/dist?productID=${this.state.id}`;
   }
 
   handleGetCurrentItem() {}
@@ -49,9 +52,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    Axios.get(this.state.url).then(currentItem => {
+    Axios.get(this.url).then(currentItem => {
       console.log(currentItem.data);
-      this.setState({ currentItem: currentItem.data });
+      this.setState({ currentItem: currentItem.data[0] });
     });
   }
 
@@ -59,7 +62,7 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <CustomerReviewSummary currentItem={this.state.currentItem} />
+          <CustomerReviewSummary currentItem={this.state} />
         </div>
         <div>
           {/* <Customer_Images currentItem={this.currentItem} /> */}

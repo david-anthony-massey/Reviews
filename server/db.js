@@ -123,10 +123,19 @@ const deleteTask = (id, callback) => {
 const getCurrentItem = (productID, callback) => {
   connection.query(
     `SELECT * FROM products WHERE id="${productID}"`,
-    (err, data) => {
+    (err, data1) => {
       if (err) throw err;
       else {
-        callback(null, data);
+        connection.query(
+          `SELECT AVG(rating), COUNT(rating) FROM reviews WHERE product_id="${productID}"`,
+          (err, data2) => {
+            if (err) throw err;
+            else {
+              let data = data1.concat(data2);
+              callback(null, data);
+            }
+          }
+        );
       }
     }
   );
