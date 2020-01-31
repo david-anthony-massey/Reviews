@@ -6,18 +6,14 @@ import ReviewPage from "./ReviewPage";
 import CustomerReviewSummary from "./CustomerReviewSummary";
 import { Link, matchPath } from "react-router-dom";
 import queryString from "query-string";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-class ReviewApp extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: {
-        rating: 1.5,
-        productID: 1
-      },
-      ratings: []
+      currentItem: { totalReviews: 32, id: 26, ratings: [] },
+      url: `http://localhost:3030/dist?productID=26`
     };
   }
 
@@ -52,7 +48,12 @@ class ReviewApp extends React.Component {
     // Need to
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    Axios.get(this.state.url).then(currentItem => {
+      console.log(currentItem.data);
+      this.setState({ currentItem: currentItem.data });
+    });
+  }
 
   render() {
     return (
@@ -70,4 +71,4 @@ class ReviewApp extends React.Component {
   }
 }
 
-export default ReviewApp;
+export default App;

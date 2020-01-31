@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const db = require("./db.js");
-const dummyData = require("../dummydata/CanadianAPISorryEh.js").default;
+var bodyParser = require("body-parser");
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const app = express();
 
@@ -10,12 +11,13 @@ app.use(express.static(path.join(__dirname, "../dist")));
 app.use(cors());
 app.use(express.json());
 
-app.get("/productID", (req, res) => {
-  db.getCurrentItem(req.params["productID"], (err, data) => {
+app.get("/dist", urlencodedParser, (req, res) => {
+  console.log(req.query);
+  db.getCurrentItem(27, (err, data) => {
     if (err) {
       console.error(err);
     } else {
-      res.send(data);
+      res.send(JSON.stringify(data));
     }
   });
 });

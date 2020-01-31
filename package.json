@@ -5,9 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "jest",
-    "start": "webpack -d --watch & live-server --port=3030 --watch=dist --open=dist",
-    "start-oh": "webpack -d --watch",
-    "server_start": "nodemon server/server.js",
+    "start": "webpack -d --watch",
+    "server_start": "nodemon server/index.js",
     "make_db": "mysql -u root -p < /Users/reku68/Documents/GitHub/CanadaAmazon/server/schema.sql"
   },
   "repository": {

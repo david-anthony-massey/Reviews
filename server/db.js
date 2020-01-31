@@ -120,7 +120,7 @@ const deleteTask = (id, callback) => {
   });
 };
 
-const getCurrentItem = (productID, userID, callback) => {
+const getCurrentItem = (productID, callback) => {
   connection.query(
     `SELECT * FROM products WHERE id="${productID}"`,
     (err, data) => {
