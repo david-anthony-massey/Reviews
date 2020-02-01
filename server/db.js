@@ -22,9 +22,31 @@ connection.connect(err => {
 const seedTableUsers = () => {
   let sql = "INSERT INTO Users (total) VALUES ?";
 
-  connection.query(sql, [[[0], [0], [0], [0], [0]]], function(err) {
-    if (err) throw err;
-  });
+  connection.query(
+    sql,
+    [
+      [
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0],
+        [0]
+      ]
+    ],
+    function(err) {
+      if (err) throw err;
+    }
+  );
 };
 
 //seedTableUsers();
@@ -83,17 +105,23 @@ const seedTableReviews = () => {
     `Truth`
   ];
 
-  for (let j = 1; j < 6; j++) {
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  let p = 0;
+  for (let j = 1; j < 16; j++) {
     for (let i = 1; i < dummyData.length + 1; i++) {
       values.push([
         j,
         i,
-        fakeReviewTitles[i % 6],
-        fakeReviews[i % 6],
-        fakeRatings[i % 5],
-        fakeDateCreated[i % 2]
+        fakeReviewTitles[(i + p) % 6],
+        fakeReviews[(i + p) % 6],
+        fakeRatings[(i + p + 2 - getRandomInt(3)) % 5],
+        fakeDateCreated[(i + p) % 2]
       ]);
     }
+    p++;
   }
 
   connection.query(sql, [values], function(err) {
@@ -101,24 +129,6 @@ const seedTableReviews = () => {
   });
 };
 //seedTableReviews();
-
-const addTask = (task, callback) => {
-  connection.query(
-    `INSERT INTO tasks (task) VALUES ("${task}")`,
-    (err, data) => {
-      if (err) throw err;
-      else callback(null, data);
-    }
-  );
-};
-
-const deleteTask = (id, callback) => {
-  console.log(id);
-  connection.query(`DELETE FROM tasks WHERE id="${id}"`, (err, data) => {
-    if (err) throw err;
-    else callback(null, data);
-  });
-};
 
 const getCurrentItem = (productID, callback) => {
   connection.query(
@@ -131,8 +141,24 @@ const getCurrentItem = (productID, callback) => {
           (err, data2) => {
             if (err) throw err;
             else {
-              let data = data1.concat(data2);
-              callback(null, data);
+              connection.query(
+                `SELECT user_id, review_title, review_text, rating, date_created FROM reviews WHERE product_id="${productID}"`,
+                (err, data3) => {
+                  if (err) throw err;
+                  else {
+                    connection.query(
+                      `SELECT COUNT(rating) FROM reviews WHERE rating=5 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=4 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=3 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=2 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=1 AND product_id="${productID}"`,
+                      (err, data4) => {
+                        if (err) throw err;
+                        else {
+                          let data = [data1[0], data2[0], data3, data4];
+                          callback(null, data);
+                        }
+                      }
+                    );
+                  }
+                }
+              );
             }
           }
         );
@@ -141,4 +167,4 @@ const getCurrentItem = (productID, callback) => {
   );
 };
 
-module.exports = { addTask, deleteTask, getCurrentItem };
+module.exports = { getCurrentItem };

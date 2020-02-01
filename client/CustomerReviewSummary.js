@@ -1,6 +1,7 @@
 import React from "react";
 import LeafRatingComponent from "./LeafRatingComponent";
 import { Grid, Cell } from "styled-css-grid";
+import ReviewBars from "./ReviewBars";
 
 class CustomerReviewSummary extends React.Component {
   constructor(props) {
@@ -13,35 +14,73 @@ class CustomerReviewSummary extends React.Component {
       <div
         style={{
           width: "300px",
-          height: "868px"
+          height: "868px",
+          marginLeft: "18px"
         }}
       >
         <h3>Customer Reviews</h3>
         <LeafRatingComponent currentItem={this.props.currentItem} type="main" />
-        <div> {`${this.props.currentItem.totalReviews} customer ratings`}</div>
-
+        <div
+          style={{ fontSize: 13 }}
+        >{`${this.props.currentItem.totalReviews} customer ratings`}</div>
+        <div style={{ marginTop: "18px" }}></div>
+        <ReviewBars currentItem={this.props.currentItem} />
         <hr></hr>
         <h4>By feature</h4>
         {/* need to make a 3X2 grid */}
-        <Grid columns={2} gap="2px">
-          <Cell>foo</Cell>
-          <Cell height={2}>bar</Cell>
-          <Cell width={2}>baz</Cell>
+        <Grid columns={"150px 150px"} justifyContent="space-around">
+          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+            <div
+              style={{
+                alignSelf: "center",
+                textAlign: "center",
+                verticalAlign: "middle"
+              }}
+            >
+              Handle
+            </div>
+          </Cell>
+          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+            <LeafRatingComponent
+              currentItem={this.props.currentItem}
+              type="featureReview"
+            />
+          </Cell>
+          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+            <div
+              style={{
+                alignSelf: "center",
+                textAlign: "center",
+                verticalAlign: "middle"
+              }}
+            >
+              Smell
+            </div>
+          </Cell>
+          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+            <LeafRatingComponent
+              currentItem={this.props.currentItem}
+              type="featureReview"
+            />
+          </Cell>
+          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+            <div
+              style={{
+                alignSelf: "center",
+                textAlign: "center",
+                verticalAlign: "middle"
+              }}
+            >
+              Appearance
+            </div>
+          </Cell>
+          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+            <LeafRatingComponent
+              currentItem={this.props.currentItem}
+              type="featureReview"
+            />
+          </Cell>
         </Grid>
-
-        <input
-          type="text"
-          data-hook="Don't-know-how-to-use-this"
-          id="review-title"
-          placeholder="What's most important to know?"
-          className="review-input-text review-form-error"
-        ></input>
-        <h4>Write your review</h4>
-        <textarea
-          placeholder="What did you like or dislike? What did you use this product for?"
-          id="ryp-review-text"
-          height="100px"
-        ></textarea>
       </div>
     );
   }

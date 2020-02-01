@@ -8,3 +8,14 @@
   background-position: center;
   cursor: pointer;
 }
+
+.dv-star-rating {
+  align-self: center;
+}
+.dv-star-rating-non-editable {
+  align-self: center;
+}
+
+.progress-bar {
+  background-color: #e2440b;
+}

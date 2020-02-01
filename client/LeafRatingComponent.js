@@ -12,11 +12,18 @@ class LeafRatingComponent extends React.Component {
   }
 
   render() {
-    let halfStarVal;
-    let halfStar;
-    let starWidth;
-    let starHeight;
-    let extraInfo;
+    let halfStarVal,
+      fullStarVal,
+      emptyStarVal,
+      halfStar,
+      starWidth,
+      starHeight,
+      extraInfo,
+      extraInfoStyle,
+      blockSize;
+
+    emptyStarVal = 5 - Math.ceil(this.props.currentItem.rating);
+    fullStarVal = Math.floor(this.props.currentItem.rating);
     if (
       this.props.currentItem.rating -
         Math.floor(this.props.currentItem.rating) >=
@@ -25,20 +32,65 @@ class LeafRatingComponent extends React.Component {
       halfStarVal = 1;
     } else {
       halfStarVal = 0;
+      emptyStarVal += 1;
     }
 
     if (this.props.type === "main") {
       starHeight = "35";
       starWidth = "30";
       extraInfo = `${round(this.props.currentItem.rating, 1)} out of 5`;
+      extraInfoStyle = {
+        font: "Gill Sans",
+        fontWeight: "bold",
+        fontSize: 18,
+        textAlign: "center",
+        alignSelf: "center",
+        marginLeft: "10px"
+      };
+      blockSize = {
+        width: "260px",
+        height: "45px",
+        display: "flex",
+        textAlign: "center",
+        alignSelf: "center"
+      };
     } else if (this.props.type === "review") {
       starHeight = "25";
       starWidth = "20";
       extraInfo = this.props.reviewTitle;
+      extraInfoStyle = {
+        font: "Gill Sans",
+        fontWeight: "bold",
+        fontSize: 15,
+        textAlign: "center",
+        alignSelf: "center",
+        marginLeft: "10px"
+      };
+      blockSize = {
+        width: "300px",
+        height: "60px",
+        display: "flex",
+        textAlign: "center",
+        alignSelf: "center"
+      };
     } else if (this.props.type === "featureReview") {
       starHeight = "25";
       starWidth = "20";
       extraInfo = round(this.props.currentItem.rating, 1);
+      extraInfoStyle = {
+        font: "Gill Sans",
+        fontSize: 15,
+        textAlign: "center",
+        alignSelf: "center",
+        marginLeft: "10px"
+      };
+      blockSize = {
+        width: "300px",
+        height: "60px",
+        display: "flex",
+        textAlign: "center",
+        alignSelf: "center"
+      };
     }
 
     let fullStars = (
@@ -46,17 +98,16 @@ class LeafRatingComponent extends React.Component {
         name="halfy"
         editing={false}
         renderStarIcon={() => (
-          <span style={{ verticalAlign: "middle" }}>
+          <span>
             <img
-              src="../dist/images/full_leaf.png"
+              src="../images/full_leaf.png"
               alt="test"
-              width="30"
-              height="35"
-              style={{ verticalAlign: "middle" }}
+              width={starWidth}
+              height={starHeight}
             />
           </span>
         )}
-        starCount={Math.floor(this.props.currentItem.rating)}
+        starCount={fullStarVal}
         value={8}
       />
     );
@@ -65,18 +116,22 @@ class LeafRatingComponent extends React.Component {
       <StarRatingComponent
         name="halfy"
         editing={false}
+        style={{
+          alignSelf: "center",
+          textAlign: "center",
+          verticalAlign: "middle"
+        }}
         renderStarIcon={() => (
-          <span style={{ verticalAlign: "middle" }}>
+          <span>
             <img
-              src="../dist/images/empty_leaf.png"
+              src="../images/empty_leaf.png"
               alt="test"
-              width="30"
-              height="35"
-              style={{ verticalAlign: "middle" }}
+              width={starWidth}
+              height={starHeight}
             />
           </span>
         )}
-        starCount={5 - Math.ceil(this.props.currentItem.rating)}
+        starCount={emptyStarVal}
         value={8}
       />
     );
@@ -86,13 +141,12 @@ class LeafRatingComponent extends React.Component {
         name="halfy"
         editing={false}
         renderStarIcon={() => (
-          <span style={{ verticalAlign: "middle" }}>
+          <span>
             <img
-              src="../dist/images/half_leaf.png"
+              src="../images/half_leaf.png"
               alt="test"
-              width="30"
-              height="35"
-              style={{ verticalAlign: "middle" }}
+              width={starWidth}
+              height={starHeight}
             />
           </span>
         )}
@@ -101,28 +155,11 @@ class LeafRatingComponent extends React.Component {
       />
     );
     return (
-      <div
-        style={{
-          width: "250px",
-          height: "45px",
-          display: "inline-block"
-        }}
-      >
+      <div style={blockSize}>
         {fullStars}
         {halfStar}
         {emptyStars}
-        <div
-          style={{
-            display: "inline-block",
-            height: "125%",
-            font: "Gill Sans",
-            fontWeight: "bold",
-            fontSize: 18,
-            verticalAlign: "middle"
-          }}
-        >
-          {extraInfo}
-        </div>
+        <div style={extraInfoStyle}>{extraInfo}</div>
       </div>
     );
   }
