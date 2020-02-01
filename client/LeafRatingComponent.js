@@ -108,7 +108,6 @@ class LeafRatingComponent extends React.Component {
           </span>
         )}
         starCount={fullStarVal}
-        value={8}
       />
     );
 
@@ -132,7 +131,6 @@ class LeafRatingComponent extends React.Component {
           </span>
         )}
         starCount={emptyStarVal}
-        value={8}
       />
     );
 
@@ -151,7 +149,6 @@ class LeafRatingComponent extends React.Component {
           </span>
         )}
         starCount={halfStarVal}
-        value={8}
       />
     );
     return (

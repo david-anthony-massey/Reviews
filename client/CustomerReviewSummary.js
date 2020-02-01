@@ -18,7 +18,7 @@ class CustomerReviewSummary extends React.Component {
           marginLeft: "18px"
         }}
       >
-        <h3>Customer Reviews</h3>
+        <h4>Customer Reviews</h4>
         <LeafRatingComponent currentItem={this.props.currentItem} type="main" />
         <div
           style={{ fontSize: 13 }}
@@ -26,10 +26,10 @@ class CustomerReviewSummary extends React.Component {
         <div style={{ marginTop: "18px" }}></div>
         <ReviewBars currentItem={this.props.currentItem} />
         <hr></hr>
-        <h4>By feature</h4>
+        <h5>By feature</h5>
         {/* need to make a 3X2 grid */}
         <Grid columns={"150px 150px"} justifyContent="space-around">
-          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
             <div
               style={{
                 alignSelf: "center",
@@ -40,13 +40,13 @@ class CustomerReviewSummary extends React.Component {
               Handle
             </div>
           </Cell>
-          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell center middle style={{ display: "flex", verticalAlign: "middle" }}>
             <LeafRatingComponent
               currentItem={this.props.currentItem}
               type="featureReview"
             />
           </Cell>
-          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
             <div
               style={{
                 alignSelf: "center",
@@ -57,13 +57,13 @@ class CustomerReviewSummary extends React.Component {
               Smell
             </div>
           </Cell>
-          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell center middle style={{ display: "flex", verticalAlign: "middle" }}>
             <LeafRatingComponent
               currentItem={this.props.currentItem}
               type="featureReview"
             />
           </Cell>
-          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
             <div
               style={{
                 alignSelf: "center",
@@ -74,13 +74,26 @@ class CustomerReviewSummary extends React.Component {
               Appearance
             </div>
           </Cell>
-          <Cell style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell center middle style={{ display: "flex", verticalAlign: "middle" }}>
             <LeafRatingComponent
               currentItem={this.props.currentItem}
               type="featureReview"
             />
           </Cell>
         </Grid>
+        <hr></hr>
+        <h5>Review this product</h5>
+        <div style={{
+                marginBottom: 18,
+                fontSize: 13
+              }}>How about lettin others know what cha think?</div>
+        <button style={{
+          width: "300px"
+              }}> <p style={{
+                fontSize: 13,
+                alignSelf: "center",
+                marginBottom: 0
+              }}>Write a customer review</p></button>
       </div>
     );
   }

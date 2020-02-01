@@ -19,3 +19,7 @@
 .progress-bar {
   background-color: #e2440b;
 }
+
+label {
+  margin-bottom: 0;
+}
