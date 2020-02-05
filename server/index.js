@@ -5,6 +5,7 @@ const db = require("./db.js");
 var bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+const PORT = 8081;
 const app = express();
 
 app.use(express.static(path.join(__dirname, "../dist")));
@@ -33,6 +34,6 @@ app.post("/todo", (req, res) => {
   });
 });
 
-app.listen(3030, () => {
-  console.log("I'm now listening on port 3030!");
+app.listen(PORT, () => {
+  console.log(`I'm now listening on port ${PORT}!`);
 });

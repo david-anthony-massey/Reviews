@@ -5,11 +5,11 @@ const {
 } = require("../dummydata/CanadianAPISorryEh");
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
+  host: "mybb.cfpgvexeasco.us-east-2.rds.amazonaws.com",
+  user: "reku68",
   password: "password",
-  database: "Canada_Amazon",
-  insecureAuth: true
+  database: "CanadaAmazon",
+  port: 3306
 });
 
 connection.connect(err => {
@@ -130,24 +130,26 @@ const seedTableReviews = () => {
 };
 //seedTableReviews();
 
+//refactor as 1 query with left join
+
 const getCurrentItem = (productID, callback) => {
   connection.query(
-    `SELECT * FROM products WHERE id="${productID}"`,
+    `SELECT * FROM Products WHERE id="${productID}"`,
     (err, data1) => {
       if (err) throw err;
       else {
         connection.query(
-          `SELECT AVG(rating), COUNT(rating) FROM reviews WHERE product_id="${productID}"`,
+          `SELECT AVG(rating), COUNT(rating) FROM Reviews WHERE product_id="${productID}"`,
           (err, data2) => {
             if (err) throw err;
             else {
               connection.query(
-                `SELECT user_id, review_title, review_text, rating, date_created FROM reviews WHERE product_id="${productID}"`,
+                `SELECT user_id, review_title, review_text, rating, date_created FROM Reviews WHERE product_id="${productID}" LIMIT 100`,
                 (err, data3) => {
                   if (err) throw err;
                   else {
                     connection.query(
-                      `SELECT COUNT(rating) FROM reviews WHERE rating=5 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=4 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=3 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=2 AND product_id="${productID}" UNION SELECT COUNT(rating) FROM reviews WHERE rating=1 AND product_id="${productID}"`,
+                      `SELECT COUNT(rating) FROM Reviews WHERE rating=5 AND product_id="${productID}" UNION ALL SELECT COUNT(rating) FROM Reviews WHERE rating=4 AND product_id="${productID}" UNION ALL SELECT COUNT(rating) FROM Reviews WHERE rating=3 AND product_id="${productID}" UNION ALL SELECT COUNT(rating) FROM Reviews WHERE rating=2 AND product_id="${productID}" UNION ALL SELECT COUNT(rating) FROM Reviews WHERE rating=1 AND product_id="${productID}"`,
                       (err, data4) => {
                         if (err) throw err;
                         else {

@@ -30,9 +30,15 @@ class LeafRatingComponent extends React.Component {
       0.5
     ) {
       halfStarVal = 1;
-    } else {
+    } else if (
+      this.props.currentItem.rating -
+        Math.floor(this.props.currentItem.rating) !==
+      0
+    ) {
       halfStarVal = 0;
       emptyStarVal += 1;
+    } else {
+      halfStarVal = 0;
     }
 
     if (this.props.type === "main") {
@@ -67,7 +73,7 @@ class LeafRatingComponent extends React.Component {
         marginLeft: "10px"
       };
       blockSize = {
-        width: "300px",
+        width: "150px",
         height: "60px",
         display: "flex",
         textAlign: "center",
@@ -85,7 +91,7 @@ class LeafRatingComponent extends React.Component {
         marginLeft: "10px"
       };
       blockSize = {
-        width: "300px",
+        width: "150px",
         height: "60px",
         display: "flex",
         textAlign: "center",

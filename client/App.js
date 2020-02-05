@@ -3,7 +3,9 @@ import React from "react";
 import Axios from "axios";
 import ReviewPage from "./ReviewPage";
 import CustomerReviewSummary from "./CustomerReviewSummary";
+import ReviewWords from "./ReviewWords";
 import CustomerImages from "./CustomerImages";
+import Reviews from "./Reviews";
 import { Link, matchPath } from "react-router-dom";
 import queryString from "query-string";
 import { Grid, Cell } from "styled-css-grid";
@@ -13,10 +15,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { id: 25 }
+      currentItem: { id: 80 },
+      currentReviewWord: null,
+      currentReviewOrder: "random"
     };
 
-    this.url = `http://localhost:3030/dist?productID=${this.state.currentItem.id}`;
+    this.url = `/dist?productID=${this.state.currentItem.id}`;
 
     this.handleGetCurrentItem = this.handleGetCurrentItem.bind(this);
     this.handleCommentReviews = this.handleCommentReviews.bind(this);
@@ -103,41 +107,50 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Grid
-          columns={"300px 90px 933px"}
-          justifyContent="start"
-          areas={[
-            "review_mettrics .  customer_images",
-            "review_mettrics   . review_words   ",
-            "review_mettrics .  reviews"
-          ]}
-        >
-          <Cell style={{ display: "flex" }} area="review_mettrics">
-            <div>
-              <CustomerReviewSummary currentItem={this.state.currentItem} />
-            </div>
-          </Cell>
-          <Cell style={{ display: "flex" }} area="customer_images">
-            <div>
-              <CustomerImages currentItem={this.state.currentItem} />
-            </div>
-          </Cell>
-          <Cell style={{ display: "flex" }} area="customer_images">
-            <div>
-              <ReviewWords currentItem={this.state.currentItem} />
-            </div>
-          </Cell>
-        </Grid>
-
+    if (this.state.currentItem.reviews) {
+      return (
         <div>
-          {/* <Customer_Images currentItem={this.currentItem} /> */}
-          {/* <Mentioned_Words currentItem={this.currentItem} /> */}
-          {/* <Review_Display currentItem={this.currentItem} /> */}
+          <Grid
+            columns={"300px 90px 933px"}
+            justifyContent="start"
+            areas={[
+              "review_mettrics .  customer_images",
+              "review_mettrics   . review_words   ",
+              "review_mettrics .  reviews"
+            ]}
+          >
+            <Cell style={{ display: "flex" }} area="review_mettrics">
+              <div>
+                <CustomerReviewSummary currentItem={this.state.currentItem} />
+              </div>
+            </Cell>
+            <Cell style={{ display: "flex" }} area="customer_images">
+              <div>
+                <CustomerImages currentItem={this.state.currentItem} />
+              </div>
+            </Cell>
+            <Cell style={{ display: "flex" }} area="review_words">
+              <div>
+                <ReviewWords currentItem={this.state.currentItem} />
+              </div>
+            </Cell>
+            <Cell style={{ display: "flex" }} area="reviews">
+              <div>
+                <Reviews currentItem={this.state.currentItem} />
+              </div>
+            </Cell>
+          </Grid>
+
+          <div>
+            {/* <Customer_Images currentItem={this.currentItem} /> */}
+            {/* <Mentioned_Words currentItem={this.currentItem} /> */}
+            {/* <Review_Display currentItem={this.currentItem} /> */}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <div></div>;
+    }
   }
 }
 
