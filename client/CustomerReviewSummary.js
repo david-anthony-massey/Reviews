@@ -7,6 +7,7 @@ class CustomerReviewSummary extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
+    console.log(this.props);
   }
 
   render() {
@@ -40,8 +41,13 @@ class CustomerReviewSummary extends React.Component {
               Handle
             </div>
           </Cell>
-          <Cell center middle style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell
+            center
+            middle
+            style={{ display: "flex", verticalAlign: "middle" }}
+          >
             <LeafRatingComponent
+              featureReview={this.props.currentItem.reviews[2]}
               currentItem={this.props.currentItem}
               type="featureReview"
             />
@@ -57,8 +63,13 @@ class CustomerReviewSummary extends React.Component {
               Smell
             </div>
           </Cell>
-          <Cell center middle style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell
+            center
+            middle
+            style={{ display: "flex", verticalAlign: "middle" }}
+          >
             <LeafRatingComponent
+              featureReview={this.props.currentItem.reviews[0]}
               currentItem={this.props.currentItem}
               type="featureReview"
             />
@@ -74,8 +85,13 @@ class CustomerReviewSummary extends React.Component {
               Appearance
             </div>
           </Cell>
-          <Cell center middle style={{ display: "flex", verticalAlign: "middle" }}>
+          <Cell
+            center
+            middle
+            style={{ display: "flex", verticalAlign: "middle" }}
+          >
             <LeafRatingComponent
+              featureReview={this.props.currentItem.reviews[4]}
               currentItem={this.props.currentItem}
               type="featureReview"
             />
@@ -83,17 +99,30 @@ class CustomerReviewSummary extends React.Component {
         </Grid>
         <hr></hr>
         <h5>Review this product</h5>
-        <div style={{
-                marginBottom: 18,
-                fontSize: 13
-              }}>How about lettin others know what cha think?</div>
-        <button style={{
-          width: "300px"
-              }}> <p style={{
-                fontSize: 13,
-                alignSelf: "center",
-                marginBottom: 0
-              }}>Write a customer review</p></button>
+        <div
+          style={{
+            marginBottom: 18,
+            fontSize: 13
+          }}
+        >
+          How about lettin others know what cha think?
+        </div>
+        <button
+          style={{
+            width: "300px"
+          }}
+        >
+          {" "}
+          <p
+            style={{
+              fontSize: 13,
+              alignSelf: "center",
+              marginBottom: 0
+            }}
+          >
+            Write a customer review
+          </p>
+        </button>
       </div>
     );
   }

@@ -18,9 +18,14 @@ class LeafRatingComponent extends React.Component {
       extraInfoStyle,
       blockSize,
       popoverSymbol,
-      popoverInfo;
+      stars;
 
-    let stars = computeStars(this.props.currentItem.rating);
+    if (this.props.featureReview) {
+      stars = computeStars(this.props.featureReview.rating);
+    } else {
+      stars = computeStars(this.props.currentItem.rating);
+    }
+
     let emptyStarVal = stars[0];
     let halfStarVal = stars[1];
     let fullStarVal = stars[2];
@@ -72,7 +77,7 @@ class LeafRatingComponent extends React.Component {
     } else if (this.props.type === "featureReview") {
       starHeight = "25";
       starWidth = "20";
-      extraInfo = round(this.props.currentItem.rating, 1);
+      extraInfo = round(this.props.featureReview.rating, 1);
       extraInfoStyle = {
         font: "Gill Sans",
         fontSize: 15,
@@ -96,7 +101,7 @@ class LeafRatingComponent extends React.Component {
         renderStarIcon={() => (
           <span>
             <img
-              src="../images/full_leaf.png"
+              src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
@@ -119,7 +124,7 @@ class LeafRatingComponent extends React.Component {
         renderStarIcon={() => (
           <span>
             <img
-              src="../images/empty_leaf.png"
+              src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
@@ -137,7 +142,7 @@ class LeafRatingComponent extends React.Component {
         renderStarIcon={() => (
           <span>
             <img
-              src="../images/half_leaf.png"
+              src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/half_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}

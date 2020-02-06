@@ -8,20 +8,15 @@ class ReviewWords extends React.Component {
   }
 
   render() {
-    let words1 = [];
-    let words2 = [];
-    let words3 = [];
-    let tempArr;
-    for (let i = 0; i < 15; i++) {
-      tempArr = this.props.currentItem.reviews[i].review_text.split(" ");
-      if (i < 5) {
-        words1.push(`${tempArr[0]} ${tempArr[1]}`);
-      } else if (i < 11) {
-        words2.push(`${tempArr[0]} ${tempArr[1]}`);
-      } else {
-        words3.push(`${tempArr[0]} ${tempArr[1]}`);
-      }
-    }
+    let words1 = ["froopy", "it's w/e", "ka is", "the posts", "the ghosts"];
+    let words2 = [
+      "Pure perfection",
+      "the covenant",
+      "builder refused",
+      "I guess",
+      "a wheel"
+    ];
+    let words3 = ["water of the womb", "I hate it!", "Amidst the", "his fists"];
 
     return (
       <div>

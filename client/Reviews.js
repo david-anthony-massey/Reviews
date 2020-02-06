@@ -29,7 +29,7 @@ class Reviews extends React.Component {
                   <div>
                     <img
                       src={`https://picsum.photos/50?random=${indx}`}
-                      style={{ marginRight: "15px" }}
+                      style={{ marginRight: "15px", borderRadius: "50%" }}
                     />
                     {`Random User  ${review.user_id}`}
                   </div>
