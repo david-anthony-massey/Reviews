@@ -1,25 +1,8 @@
 import React from "react";
 import StarRatingComponent from "react-star-rating-component";
-
-function round(value, decimals) {
-  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
-}
-
-function computeStars(rating) {
-  let halfStarVal;
-  let emptyStarVal = 5 - Math.ceil(rating);
-  let fullStarVal = Math.floor(rating);
-  if (rating - Math.floor(rating) >= 0.5) {
-    halfStarVal = 1;
-  } else if (rating - Math.floor(rating) !== 0) {
-    halfStarVal = 0;
-    emptyStarVal += 1;
-  } else {
-    halfStarVal = 0;
-  }
-
-  return [emptyStarVal, halfStarVal, fullStarVal];
-}
+import Popover from "react-bootstrap/Popover";
+import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 class LeafRatingComponent extends React.Component {
   constructor(props) {
@@ -28,7 +11,14 @@ class LeafRatingComponent extends React.Component {
   }
 
   render() {
-    let halfStar, starWidth, starHeight, extraInfo, extraInfoStyle, blockSize;
+    let halfStar,
+      starWidth,
+      starHeight,
+      extraInfo,
+      extraInfoStyle,
+      blockSize,
+      popoverSymbol,
+      popoverInfo;
 
     let stars = computeStars(this.props.currentItem.rating);
     let emptyStarVal = stars[0];
@@ -38,6 +28,7 @@ class LeafRatingComponent extends React.Component {
     if (this.props.type === "main") {
       starHeight = "35";
       starWidth = "30";
+      popoverSymbol = `review-icon review-icon-popover`;
       extraInfo = `${round(this.props.currentItem.rating, 1)} out of 5`;
       extraInfoStyle = {
         font: "Gill Sans",
@@ -156,15 +147,77 @@ class LeafRatingComponent extends React.Component {
         starCount={halfStarVal}
       />
     );
-    return (
-      <div style={blockSize}>
-        {fullStars}
-        {halfStar}
-        {emptyStars}
-        <div style={extraInfoStyle}>{extraInfo}</div>
-      </div>
-    );
+    const hidePopover = () => {
+      this.refs.overlay.handleHide();
+    };
+    if (popoverSymbol) {
+      const popover = (
+        <Popover id="popover-basic">
+          <Popover.Content>
+            Saskatchewanazon calculates a product’s star ratings based on 15
+            premade reviews assigned to random users. All randomly generated
+            reviews' ratings are averaged and categorized to give you the data
+            shown here.
+          </Popover.Content>
+        </Popover>
+      );
+
+      <Button onClick={this.hidePopover}></Button>;
+
+      const MainReviewPopover = () => (
+        <OverlayTrigger
+          trigger={["hover", "click", "focus"]}
+          placement="bottom"
+          transition={true}
+          overlay={popover}
+        >
+          <div style={blockSize}>
+            {fullStars}
+            {halfStar}
+            {emptyStars}
+            <div style={extraInfoStyle}>{extraInfo}</div>
+            <div className={popoverSymbol}></div>
+          </div>
+        </OverlayTrigger>
+      );
+
+      return (
+        <div>
+          <MainReviewPopover></MainReviewPopover>
+        </div>
+      );
+    } else {
+      return (
+        <div style={blockSize}>
+          {fullStars}
+          {halfStar}
+          {emptyStars}
+          <div style={extraInfoStyle}>{extraInfo}</div>
+          <div className={popoverSymbol}></div>
+        </div>
+      );
+    }
   }
+}
+
+function round(value, decimals) {
+  return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
+}
+
+function computeStars(rating) {
+  let halfStarVal;
+  let emptyStarVal = 5 - Math.ceil(rating);
+  let fullStarVal = Math.floor(rating);
+  if (rating - Math.floor(rating) >= 0.5) {
+    halfStarVal = 1;
+  } else if (rating - Math.floor(rating) !== 0) {
+    halfStarVal = 0;
+    emptyStarVal += 1;
+  } else {
+    halfStarVal = 0;
+  }
+
+  return [emptyStarVal, halfStarVal, fullStarVal];
 }
 
 export default LeafRatingComponent;

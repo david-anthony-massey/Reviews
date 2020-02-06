@@ -57,7 +57,7 @@ class CustomerImages extends React.Component {
             </div>
           </Cell>
         </Grid>
-        <div>See all customer images</div>
+        <div className="review-link">See all customer images</div>
       </div>
     );
   }

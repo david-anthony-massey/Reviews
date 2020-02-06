@@ -61,9 +61,7 @@ class App extends React.Component {
   }
 
   handleStartReview() {
-    // needs to POST to server with all the information that comes with the review
-    // rating, comments, ...?
-    // will need to be added to a db table with a user, review, product
+    // redirect to a review making page
   }
 
   handleUploadImages() {
