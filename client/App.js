@@ -9,7 +9,6 @@ import Reviews from "./Reviews";
 import { Link, matchPath } from "react-router-dom";
 import queryString from "query-string";
 import { Grid, Cell } from "styled-css-grid";
-import "./App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -110,8 +109,9 @@ class App extends React.Component {
     if (this.state.currentItem.reviews) {
       return (
         <div>
+          <hr></hr>
           <Grid
-            columns={"300px 90px 933px"}
+            columns={"330px 95px 933px"}
             justifyContent="start"
             areas={[
               "review_mettrics .  customer_images",

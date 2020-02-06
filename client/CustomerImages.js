@@ -9,9 +9,9 @@ class CustomerImages extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginBottom: "0px" }}>
         <div>Customer Images</div>
-        <Grid columns={"233px 233px 233px 233px"} justifyContent="start">
+        <Grid columns={"153px 153px 153px 153px"} justifyContent="start">
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
             <div
               style={{
@@ -20,7 +20,7 @@ class CustomerImages extends React.Component {
                 verticalAlign: "middle"
               }}
             >
-              <img src="https://picsum.photos/200?random=4" />
+              <img src="https://picsum.photos/153?random=4" />
             </div>
           </Cell>
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
@@ -31,7 +31,7 @@ class CustomerImages extends React.Component {
                 verticalAlign: "middle"
               }}
             >
-              <img src="https://picsum.photos/200?random=1" />
+              <img src="https://picsum.photos/153?random=1" />
             </div>
           </Cell>
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
@@ -42,7 +42,7 @@ class CustomerImages extends React.Component {
                 verticalAlign: "middle"
               }}
             >
-              <img src="https://picsum.photos/200?random=2" />
+              <img src="https://picsum.photos/153?random=2" />
             </div>
           </Cell>
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
@@ -53,7 +53,7 @@ class CustomerImages extends React.Component {
                 verticalAlign: "middle"
               }}
             >
-              <img src="https://picsum.photos/200?random=3" />
+              <img src="https://picsum.photos/153?random=3" />
             </div>
           </Cell>
         </Grid>

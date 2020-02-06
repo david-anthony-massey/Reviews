@@ -8,17 +8,24 @@ class ReviewWords extends React.Component {
   }
 
   render() {
-    let words = [];
+    let words1 = [];
+    let words2 = [];
+    let words3 = [];
     let tempArr;
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < 15; i++) {
       tempArr = this.props.currentItem.reviews[i].review_text.split(" ");
-      words.push(`${tempArr[0]} ${tempArr[1]}`);
-      console.log(words);
+      if (i < 5) {
+        words1.push(`${tempArr[0]} ${tempArr[1]}`);
+      } else if (i < 11) {
+        words2.push(`${tempArr[0]} ${tempArr[1]}`);
+      } else {
+        words3.push(`${tempArr[0]} ${tempArr[1]}`);
+      }
     }
 
     return (
       <div>
-        <div>Read reviews that mention</div>
+        <div style={{ marginBottom: "20px" }}>Read reviews that mention</div>
         <Grid
           columns={"233px 233px 233px 233px"}
           justifyContent="start"
@@ -33,15 +40,41 @@ class ReviewWords extends React.Component {
             style={{ display: "flex", verticalAlign: "middle" }}
             area="first_row"
           >
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
-              {words.map(keyWords => {
-                return <button> {keyWords} </button>;
+            <div>
+              {words1.map(keyWords => {
+                return (
+                  <button style={{ marginLeft: "30px" }}> {keyWords} </button>
+                );
+              })}
+            </div>
+          </Cell>
+          <Cell
+            middle
+            style={{ display: "flex", verticalAlign: "middle" }}
+            area="second_row"
+          >
+            <div>
+              {words2.map((keyWords, indx) => {
+                if (indx === 0) {
+                  return <button> {keyWords} </button>;
+                } else {
+                  return (
+                    <button style={{ marginLeft: "30px" }}> {keyWords} </button>
+                  );
+                }
+              })}
+            </div>
+          </Cell>
+          <Cell
+            middle
+            style={{ display: "flex", verticalAlign: "middle" }}
+            area="third_row"
+          >
+            <div>
+              {words3.map(keyWords => {
+                return (
+                  <button style={{ marginLeft: "30px" }}>{keyWords}</button>
+                );
               })}
             </div>
           </Cell>
