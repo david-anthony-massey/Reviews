@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { id: 52 },
+      currentItem: { id: 3 },
       currentReviewWord: null,
       currentReviewOrder: "random"
     };
