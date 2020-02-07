@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { id: 80 },
+      currentItem: { id: 52 },
       currentReviewWord: null,
       currentReviewOrder: "random"
     };
@@ -89,9 +89,12 @@ class App extends React.Component {
         !isNaN(event.target.getAttribute("data-id"))
       ) {
         this.setState(
-          { currentItem: event.target.getAttribute("data-id") },
+          { currentItem: { id: event.target.getAttribute("data-id") } },
           () => {
-            Axios.get(this.url).then(currentItem => {
+            console.log(`David testing ${this.state.currentItem.id}`);
+            Axios.get(
+              `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/dist/?productID=${this.state.currentItem.id}`
+            ).then(currentItem => {
               console.log(currentItem);
               let betterCurrentItem = {
                 id: currentItem.data[0]["id"],
@@ -113,6 +116,26 @@ class App extends React.Component {
           }
         );
       }
+    });
+
+    Axios.get(this.url).then(currentItem => {
+      console.log(currentItem);
+      let betterCurrentItem = {
+        id: currentItem.data[0]["id"],
+        name: currentItem.data[0]["name"],
+        description: currentItem.data[0]["DESCRIPTION"],
+        price: currentItem.data[0]["price"],
+        category_id: currentItem.data[0]["category_id"],
+        rating: currentItem.data[1]["AVG(rating)"],
+        totalReviews: currentItem.data[1]["COUNT(rating)"],
+        reviews: currentItem.data[2],
+        fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
+        fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
+        threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
+        twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
+        oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
+      };
+      this.setState({ currentItem: betterCurrentItem });
     });
   }
 

@@ -44,8 +44,7 @@ class LeafRatingComponent extends React.Component {
         marginLeft: "10px"
       };
       blockSize = {
-        width: "260px",
-        height: "45px",
+        height: "60px",
         display: "flex",
         textAlign: "center",
         alignSelf: "center"
@@ -96,7 +95,7 @@ class LeafRatingComponent extends React.Component {
 
     let fullStars = (
       <StarRatingComponent
-        name="halfy"
+        name="full"
         editing={false}
         renderStarIcon={() => (
           <span>
@@ -114,7 +113,7 @@ class LeafRatingComponent extends React.Component {
 
     let emptyStars = (
       <StarRatingComponent
-        name="halfy"
+        name="empty"
         editing={false}
         style={{
           alignSelf: "center",
