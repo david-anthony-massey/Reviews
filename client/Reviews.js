@@ -14,7 +14,7 @@ class Reviews extends React.Component {
 
     return (
       <div>
-        <select style={{ marginTop: "50px", marginBottom: "30px" }}>
+        <select style={{ marginTop: "30px", marginBottom: "25px" }}>
           <option value="">Top Reviews</option>
           <option value="">Most Recent</option>
         </select>
