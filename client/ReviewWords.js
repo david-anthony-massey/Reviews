@@ -22,12 +22,12 @@ class ReviewWords extends React.Component {
       <div>
         <div style={{ marginBottom: "20px" }}>Read reviews that mention</div>
         <Grid
-          columns={"233px 233px 233px 233px"}
+          columns={"233px 233px 233px"}
           justifyContent="start"
           areas={[
-            "first_row first_row first_row first_row first_row",
-            "second_row second_row second_row second_row second_row",
-            "third_row third_row third_row third_row third_row"
+            "first_row first_row first_row ",
+            "second_row second_row second_row ",
+            "third_row third_row third_row"
           ]}
         >
           <Cell

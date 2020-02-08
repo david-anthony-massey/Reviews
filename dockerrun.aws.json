@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "reku68/canadaamazon:latest"
+    "Name": "reku68/canadaamazon:ready0"
   },
   "Ports": [{ "ContainerPort": "8081" }],
   "Logging": "/var/log/nginx"
