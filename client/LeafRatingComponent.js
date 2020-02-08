@@ -217,7 +217,7 @@ function computeStars(rating) {
     rating - Math.floor(rating) <= 0.75
   ) {
     halfStarVal = 1;
-  } else if (rating - Math.floor(rating) <= 0.25) {
+  } else if (rating - Math.floor(rating) < 0.25) {
     halfStarVal = 0;
     emptyStarVal += 1;
   } else {
