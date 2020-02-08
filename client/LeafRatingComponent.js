@@ -219,7 +219,6 @@ function computeStars(rating) {
     halfStarVal = 1;
   } else if (rating - Math.floor(rating) < 0.5) {
     halfStarVal = 0;
-    emptyStarVal += 1;
   } else {
     halfStarVal = 0;
     fullStarVal += 1;
