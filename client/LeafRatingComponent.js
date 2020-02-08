@@ -209,22 +209,24 @@ function round(value, decimals) {
 }
 
 function computeStars(rating) {
-  let halfStarVal;
+  let halfStarVal = 0;
   let emptyStarVal = 5 - Math.ceil(rating);
   let fullStarVal = Math.floor(rating);
-  if (
-    rating - Math.floor(rating) >= 0.25 &&
-    rating - Math.floor(rating) <= 0.75
-  ) {
-    halfStarVal = 1;
-  } else if (rating - Math.floor(rating) < 0.25) {
-    halfStarVal = 0;
-    emptyStarVal += 1;
-  } else {
-    halfStarVal = 0;
-    fullStarVal += 1;
-  }
 
+  if (rating !== Math.floor(rating)) {
+    if (
+      rating - Math.floor(rating) >= 0.25 &&
+      rating - Math.floor(rating) <= 0.75
+    ) {
+      halfStarVal = 1;
+    } else if (rating - Math.floor(rating) < 0.25) {
+      halfStarVal = 0;
+      emptyStarVal += 1;
+    } else {
+      halfStarVal = 0;
+      fullStarVal += 1;
+    }
+  }
   return [emptyStarVal, halfStarVal, fullStarVal];
 }
 
