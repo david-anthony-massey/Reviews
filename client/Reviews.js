@@ -92,7 +92,7 @@ class Reviews extends React.Component {
             );
           })}
         </Grid>
-        <button>See more reviews</button>
+        {/* <button>See more reviews</button> */}
       </div>
     );
   }
