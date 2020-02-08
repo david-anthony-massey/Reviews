@@ -67,3 +67,19 @@ label {
   font-size: 13px;
   margin-top: 13px;
 }
+
+.review-icon-text-separator,
+.review-text-separator {
+  display: inline-block;
+  margin: -2px 0.67375em 0;
+  width: 1px;
+  background-color: #ddd;
+  line-height: 0;
+  height: 14px;
+  vertical-align: middle;
+}
+
+.review-rowA {
+  display: flex;
+  flex-direction: row;
+}

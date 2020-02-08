@@ -22,18 +22,6 @@ app.get("/dist", urlencodedParser, (req, res) => {
   });
 });
 
-app.post("/todo", (req, res) => {
-  const task = req.body.task;
-  console.log(task);
-  db.addTask(task, (err, data) => {
-    if (err) {
-      console.error(err);
-    } else {
-      res.send(data);
-    }
-  });
-});
-
 app.listen(PORT, () => {
   console.log(`I'm now listening on port ${PORT}!`);
 });

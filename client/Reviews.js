@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Cell } from "styled-css-grid";
 import LeafRatingComponent from "./LeafRatingComponent";
+import Button from "react-bootstrap/Button";
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Reviews extends React.Component {
 
     return (
       <div>
-        <select>
+        <select style={{ marginTop: "50px", marginBottom: "30px" }}>
           <option value="">Top Reviews</option>
           <option value="">Most Recent</option>
         </select>
@@ -21,7 +22,7 @@ class Reviews extends React.Component {
         <Grid columns={"600px"} justifyContent="start">
           {reviews.map((review, indx) => {
             return (
-              <div>
+              <div key={indx}>
                 <Cell
                   middle
                   style={{ display: "flex", verticalAlign: "middle" }}
@@ -49,6 +50,32 @@ class Reviews extends React.Component {
                   style={{ display: "flex", verticalAlign: "middle" }}
                 >
                   <div>{`${review.review_text}`}</div>
+                </Cell>
+                <Cell
+                  middle
+                  style={{ display: "flex", verticalAlign: "middle" }}
+                >
+                  <div
+                    style={{ marginTop: "30px" }}
+                  >{`Reviewed in the United States on ${review.date_created}`}</div>
+                  <div>Verified Purchase</div>
+                  <div className="review-rowA">
+                    <Button style={{ alignSelf: "center" }}>Helpful</Button>
+                    <i
+                      className="review-icon-text-separator"
+                      role="img"
+                      aria-label="|"
+                      style={{ alignSelf: "center" }}
+                    ></i>
+                    <div style={{ alignSelf: "center" }}>Comment</div>
+                    <i
+                      className="review-icon-text-separator"
+                      role="img"
+                      aria-label="|"
+                      style={{ alignSelf: "center" }}
+                    ></i>
+                    <div style={{ alignSelf: "center" }}>Report abuse</div>
+                  </div>
                 </Cell>
               </div>
             );

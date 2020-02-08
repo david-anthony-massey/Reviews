@@ -16,7 +16,6 @@ connection.connect(err => {
   if (err) {
     throw err;
   }
-  console.log("now connected to the database!");
 });
 
 const seedTableUsers = () => {

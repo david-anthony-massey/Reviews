@@ -36,9 +36,12 @@ class ReviewWords extends React.Component {
             area="first_row"
           >
             <div>
-              {words1.map(keyWords => {
+              {words1.map((keyWords, indx) => {
                 return (
-                  <button style={{ marginLeft: "30px" }}> {keyWords} </button>
+                  <button style={{ marginLeft: "30px" }} key={indx}>
+                    {" "}
+                    {keyWords}{" "}
+                  </button>
                 );
               })}
             </div>
@@ -51,10 +54,13 @@ class ReviewWords extends React.Component {
             <div>
               {words2.map((keyWords, indx) => {
                 if (indx === 0) {
-                  return <button> {keyWords} </button>;
+                  return <button key={indx}> {keyWords} </button>;
                 } else {
                   return (
-                    <button style={{ marginLeft: "30px" }}> {keyWords} </button>
+                    <button style={{ marginLeft: "30px" }} key={indx}>
+                      {" "}
+                      {keyWords}{" "}
+                    </button>
                   );
                 }
               })}
@@ -66,9 +72,11 @@ class ReviewWords extends React.Component {
             area="third_row"
           >
             <div>
-              {words3.map(keyWords => {
+              {words3.map((keyWords, indx) => {
                 return (
-                  <button style={{ marginLeft: "30px" }}>{keyWords}</button>
+                  <button style={{ marginLeft: "30px" }} key={indx}>
+                    {keyWords}
+                  </button>
                 );
               })}
             </div>

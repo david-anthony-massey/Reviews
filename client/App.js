@@ -34,7 +34,6 @@ class App extends React.Component {
 
   handleGetCurrentItem() {
     Axios.get(this.url).then(currentItem => {
-      console.log(currentItem);
       let betterCurrentItem = {
         id: currentItem.data[0]["id"],
         name: currentItem.data[0]["name"],
@@ -91,11 +90,9 @@ class App extends React.Component {
         this.setState(
           { currentItem: { id: event.target.getAttribute("data-id") } },
           () => {
-            console.log(`David testing ${this.state.currentItem.id}`);
             Axios.get(
               `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/dist/?productID=${this.state.currentItem.id}`
             ).then(currentItem => {
-              console.log(currentItem);
               let betterCurrentItem = {
                 id: currentItem.data[0]["id"],
                 name: currentItem.data[0]["name"],
@@ -119,7 +116,6 @@ class App extends React.Component {
     });
 
     Axios.get(this.url).then(currentItem => {
-      console.log(currentItem);
       let betterCurrentItem = {
         id: currentItem.data[0]["id"],
         name: currentItem.data[0]["name"],
@@ -153,33 +149,27 @@ class App extends React.Component {
               "review_mettrics .  reviews"
             ]}
           >
-            <Cell style={{ display: "flex" }} area="review_mettrics">
+            <Cell area="review_mettrics">
               <div>
                 <CustomerReviewSummary currentItem={this.state.currentItem} />
               </div>
             </Cell>
-            <Cell style={{ display: "flex" }} area="customer_images">
+            <Cell area="customer_images">
               <div>
                 <CustomerImages currentItem={this.state.currentItem} />
               </div>
             </Cell>
-            <Cell style={{ display: "flex" }} area="review_words">
+            <Cell area="review_words">
               <div>
                 <ReviewWords currentItem={this.state.currentItem} />
               </div>
             </Cell>
-            <Cell style={{ display: "flex" }} area="reviews">
+            <Cell area="reviews">
               <div>
                 <Reviews currentItem={this.state.currentItem} />
               </div>
             </Cell>
           </Grid>
-
-          <div>
-            {/* <Customer_Images currentItem={this.currentItem} /> */}
-            {/* <Mentioned_Words currentItem={this.currentItem} /> */}
-            {/* <Review_Display currentItem={this.currentItem} /> */}
-          </div>
         </div>
       );
     } else {
