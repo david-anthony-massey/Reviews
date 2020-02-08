@@ -44,7 +44,7 @@ class Reviews extends React.Component {
                     type="review"
                     reviewNum={indx}
                   />
-                  <div className="review-location-time">{`Reviewed in the United States on ${review.date_created}`}</div>
+                  <div className="review-location-time">{`Reviewed in Saskatchewan on ${review.date_created}`}</div>
                   <div
                     className="review-varified"
                     style={{ marginBottom: "5px" }}
