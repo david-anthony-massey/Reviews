@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");
+
 .review__media-upload-square-button-container {
   border: 2px solid #aab7b8;
   border-style: dashed;
@@ -82,4 +84,19 @@ label {
 .review-rowA {
   display: flex;
   flex-direction: row;
+}
+
+.review-varified {
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 1.465;
+  font-family: "Ubuntu", Arial, sans-serif;
+  color: #c45500;
+}
+
+.review-location-time {
+  font-size: 13px;
+  line-height: 19px;
+  font-family: "Ubuntu", Arial, sans-serif;
+  color: #555;
 }

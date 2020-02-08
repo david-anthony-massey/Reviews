@@ -69,8 +69,9 @@ class LeafRatingComponent extends React.Component {
         marginLeft: "10px"
       };
       blockSize = {
+        marginTop: "5px",
         width: "300px",
-        height: "60px",
+        height: "30px",
         display: "flex"
       };
     } else if (this.props.type === "featureReview") {

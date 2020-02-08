@@ -19,7 +19,7 @@ class Reviews extends React.Component {
           <option value="">Most Recent</option>
         </select>
 
-        <Grid columns={"600px"} justifyContent="start">
+        <Grid columns={"minmax(600px, *)"} justifyContent="start">
           {reviews.map((review, indx) => {
             return (
               <div key={indx}>
@@ -44,6 +44,13 @@ class Reviews extends React.Component {
                     type="review"
                     reviewNum={indx}
                   />
+                  <div className="review-location-time">{`Reviewed in the United States on ${review.date_created}`}</div>
+                  <div
+                    className="review-varified"
+                    style={{ marginBottom: "5px" }}
+                  >
+                    Verified Purchase
+                  </div>
                 </Cell>
                 <Cell
                   middle
@@ -55,12 +62,16 @@ class Reviews extends React.Component {
                   middle
                   style={{ display: "flex", verticalAlign: "middle" }}
                 >
-                  <div
-                    style={{ marginTop: "30px" }}
-                  >{`Reviewed in the United States on ${review.date_created}`}</div>
-                  <div>Verified Purchase</div>
-                  <div className="review-rowA">
-                    <Button style={{ alignSelf: "center" }}>Helpful</Button>
+                  <div className="review-rowA" style={{ marginTop: "12px" }}>
+                    <Button
+                      style={{
+                        alignSelf: "center",
+                        paddingLeft: "30px",
+                        paddingRight: "30px"
+                      }}
+                    >
+                      Helpful
+                    </Button>
                     <i
                       className="review-icon-text-separator"
                       role="img"

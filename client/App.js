@@ -141,7 +141,7 @@ class App extends React.Component {
         <div>
           <hr></hr>
           <Grid
-            columns={"330px 95px 933px"}
+            columns={"330px 95px 800px"}
             justifyContent="start"
             areas={[
               "review_mettrics .  customer_images",
