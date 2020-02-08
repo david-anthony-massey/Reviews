@@ -210,7 +210,7 @@ function round(value, decimals) {
 
 function computeStars(rating) {
   let halfStarVal;
-  let emptyStarVal = 5 - Math.floor(rating);
+  let emptyStarVal = 5 - Math.ceil(rating);
   let fullStarVal = Math.floor(rating);
   if (
     rating - Math.floor(rating) >= 0.25 &&
