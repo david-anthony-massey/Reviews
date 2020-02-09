@@ -141,12 +141,12 @@ class App extends React.Component {
         <div>
           <hr></hr>
           <Grid
-            columns={"330px 95px minmax(402px,800px)"}
+            columns={"330px 95px minmax(402px,800px) minmax(0px,1fr)"}
             justifyContent="start"
             areas={[
-              "review_mettrics .  customer_images",
-              "review_mettrics   . review_words   ",
-              "review_mettrics .  reviews"
+              "review_mettrics .  customer_images .",
+              "review_mettrics   . review_words .",
+              "review_mettrics .  reviews ."
             ]}
           >
             <Cell area="review_mettrics">
