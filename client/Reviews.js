@@ -19,7 +19,7 @@ class Reviews extends React.Component {
           <option value="">Most Recent</option>
         </select>
 
-        <Grid columns={"minmax(600px, *)"} justifyContent="start">
+        <Grid columns={"minmax(402px, 700px)"} justifyContent="start">
           {reviews.map((review, indx) => {
             return (
               <div key={indx}>
