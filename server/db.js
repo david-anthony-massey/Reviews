@@ -155,7 +155,7 @@ const getCurrentItem = (productID, callback) => {
             if (err) throw err;
             else {
               connection.query(
-                `SELECT DATE_FORMAT(date_created , '%b %D, %Y') AS date FROM Reviews WHERE product_id="${productID}" LIMIT 100`,
+                `SELECT user_id, review_title, review_text, rating, DATE_FORMAT(date_created , '%b %D, %Y') AS date FROM Reviews WHERE product_id="${productID}" LIMIT 100`,
                 (err, data3) => {
                   if (err) throw err;
                   else {
