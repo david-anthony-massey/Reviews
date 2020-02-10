@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   handleGetCurrentItem(url) {
-    Axios.get(`dist/?productID=${this.state.currentItem.id}`).then(
+    Axios.get(`${url}dist/?productID=${this.state.currentItem.id}`).then(
       currentItem => {
         console.log(currentItem);
         let betterCurrentItem = {
