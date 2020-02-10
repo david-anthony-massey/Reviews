@@ -57,14 +57,14 @@ class App extends React.Component {
   }
 
   grabReviewData(reviewData, cb) {
-    Axios.post(`add_review`, reviewData).then(cb);
+    Axios.post(`${this.url}add_review`, reviewData).then(cb);
   }
 
   handleSubmitReview(reviewData) {
     this.grabReviewData(
       reviewData,
       this.handleGetCurrentItem(
-        `${this.url}/dist/?productID=${this.state.currentItem.id}`
+        `${this.url}dist/?productID=${this.state.currentItem.id}`
       )
     );
     // needs to POST to server with all the information that comes with the review
@@ -104,7 +104,7 @@ class App extends React.Component {
           { currentItem: { id: event.target.getAttribute("data-id") } },
           () => {
             this.handleGetCurrentItem(
-              `${this.url}/dist/?productID=${this.state.currentItem.id}`
+              `${this.url}dist/?productID=${this.state.currentItem.id}`
             );
           }
         );
@@ -112,7 +112,7 @@ class App extends React.Component {
     });
 
     this.handleGetCurrentItem(
-      `${this.url}/dist/?productID=${this.state.currentItem.id}`
+      `${this.url}dist/?productID=${this.state.currentItem.id}`
     );
   }
 
