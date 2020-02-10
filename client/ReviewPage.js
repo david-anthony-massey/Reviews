@@ -30,7 +30,7 @@ export default class ReviewPage extends React.Component {
   }
 
   handleReviewRatingChange(rating) {
-    this.setState({ review_rating: rating });
+    this.setState({ rating: rating });
   }
 
   render() {
@@ -131,14 +131,17 @@ export default class ReviewPage extends React.Component {
           onChange={this.handleReviewTextChange}
         ></textarea>
         <button
+          href={"#"}
           onClick={() => {
-            this.props.handleSubmitReview({
-              review_text: this.state.review_text,
-              review_title: this.state.review_title,
-              rating: this.state.rating,
-              user_id: 10,
-              product_id: this.props.currentItem.id
-            });
+            this.props
+              .handleSubmitReview({
+                review_text: this.state.review_text,
+                review_title: this.state.review_title,
+                rating: this.state.rating,
+                user_id: 10,
+                product_id: this.props.currentItem.id
+              })
+              .then(this.props.hidePopover());
           }}
         >
           Submit Review

@@ -10,7 +10,7 @@ class Reviews extends React.Component {
   }
 
   render() {
-    let reviews = this.props.currentItem.reviews.slice(0, 6);
+    let reviews = this.props.currentItem.reviews.slice(this.props.currentItem.reviews.length - 7).reverse();
 
     return (
       <div>
@@ -42,9 +42,9 @@ class Reviews extends React.Component {
                   <LeafRatingComponent
                     currentItem={this.props.currentItem}
                     type="review"
-                    reviewNum={indx}
+                    review={review}
                   />
-                  <div className="review-location-time">{`Reviewed in Saskatchewan on ${review.date_created}`}</div>
+                  <div className="review-location-time">{`Reviewed in Saskatchewan on ${review.date}`}</div>
                   <div
                     className="review-varified"
                     style={{ marginBottom: "5px" }}

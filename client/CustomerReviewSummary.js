@@ -10,6 +10,12 @@ class CustomerReviewSummary extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
+
+    this.hidePopover = this.hidePopover.bind(this);
+  }
+
+  hidePopover(ref) {
+    this.refs.overlay.handleHide();
   }
 
   render() {
@@ -110,6 +116,7 @@ class CustomerReviewSummary extends React.Component {
           How about lettin others know what cha think?
         </div>
         <OverlayTrigger
+          ref="overlay"
           trigger="click"
           placement="right"
           overlay={
@@ -119,6 +126,7 @@ class CustomerReviewSummary extends React.Component {
                 <ReviewPage
                   handleSubmitReview={this.props.handleSubmitReview}
                   currentItem={this.props.currentItem}
+                  hidePopover={this.hidePopover}
                 />
               </Popover.Content>
             </Popover>

@@ -133,7 +133,7 @@ const seedTableReviews = () => {
 
 const addReview = (reviewData, callback) => {
   connection.query(
-    `INSERT INTO CanadaAmazon.Reviews ("user_id", "product_id", "review_title", "review_text", "rating", "date_created") VALUES (${reviewData.user_id}, ${reviewData.product_id}, ${reviewData.review_title}, ${reviewData.review_text}, ${reviewData.rating}, now())`,
+    `INSERT INTO Reviews (user_id, product_id, review_title, review_text, rating, date_created) VALUES (${reviewData.user_id}, ${reviewData.product_id}, "${reviewData.review_title}", "${reviewData.review_text}", ${reviewData.rating}, now())`,
     (err, data) => {
       if (err) throw err;
       else {

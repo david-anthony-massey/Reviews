@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   handleGetCurrentItem(url) {
-    Axios.get(`${url}dist/?productID=${this.state.currentItem.id}`).then(
+    Axios.get(`dist/?productID=${this.state.currentItem.id}`).then(
       currentItem => {
         console.log(currentItem);
         let betterCurrentItem = {
@@ -59,11 +59,11 @@ class App extends React.Component {
   }
 
   grabReviewData(reviewData, cb) {
-    Axios.post(`${this.url}add_review`, { reviewData }).then(cb);
+    Axios.post(`add_review`, reviewData).then(cb);
   }
 
-  handleSubmitReview(reviewData, cb) {
-    this.grabReviewData(reviewData, cb);
+  handleSubmitReview(reviewData) {
+    this.grabReviewData(reviewData, this.handleGetCurrentItem(this.url));
     // needs to POST to server with all the information that comes with the review
     // rating, comments,
     // will need to be added to a db table with a user, review, product

@@ -53,13 +53,12 @@ class LeafRatingComponent extends React.Component {
       starHeight = "25";
       starWidth = "20";
       let stars = computeStars(
-        this.props.currentItem.reviews[this.props.reviewNum].rating
+        this.props.review.rating
       );
       emptyStarVal = stars[0];
       halfStarVal = stars[1];
       fullStarVal = stars[2];
-      extraInfo = this.props.currentItem.reviews[this.props.reviewNum]
-        .review_title;
+      extraInfo = this.props.review.review_title;
       extraInfoStyle = {
         font: "Gill Sans",
         fontWeight: "bold",
@@ -216,7 +215,6 @@ class LeafRatingComponent extends React.Component {
           {halfStar}
           {emptyStars}
           <div style={extraInfoStyle}>{extraInfo}</div>
-          <div className={popoverSymbol}></div>
         </div>
       );
     }
