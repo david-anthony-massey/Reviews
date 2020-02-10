@@ -14,13 +14,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { id: 1 },
+      currentItem: { id: 3 },
       currentReviewWord: null,
       currentReviewOrder: "random"
     };
 
     // this url needs to be the deployment address
-    this.url = `Canadaamazon-stretch.28zuhv6c2t.us-east-2.elasticbeanstalk.com/`;
+    this.url = `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/`;
 
     this.handleGetCurrentItem = this.handleGetCurrentItem.bind(this);
     this.handleCommentReviews = this.handleCommentReviews.bind(this);
@@ -35,27 +35,25 @@ class App extends React.Component {
   }
 
   handleGetCurrentItem(url) {
-    Axios.get(`${url}dist/?productID=${this.state.currentItem.id}`).then(
-      currentItem => {
-        console.log(currentItem);
-        let betterCurrentItem = {
-          id: currentItem.data[0]["id"],
-          name: currentItem.data[0]["name"],
-          description: currentItem.data[0]["DESCRIPTION"],
-          price: currentItem.data[0]["price"],
-          category_id: currentItem.data[0]["category_id"],
-          rating: currentItem.data[1]["AVG(rating)"],
-          totalReviews: currentItem.data[1]["COUNT(rating)"],
-          reviews: currentItem.data[2],
-          fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
-          fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
-          threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
-          twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
-          oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
-        };
-        this.setState({ currentItem: betterCurrentItem });
-      }
-    );
+    Axios.get(url).then(currentItem => {
+      console.log(currentItem);
+      let betterCurrentItem = {
+        id: currentItem.data[0]["id"],
+        name: currentItem.data[0]["name"],
+        description: currentItem.data[0]["DESCRIPTION"],
+        price: currentItem.data[0]["price"],
+        category_id: currentItem.data[0]["category_id"],
+        rating: currentItem.data[1]["AVG(rating)"],
+        totalReviews: currentItem.data[1]["COUNT(rating)"],
+        reviews: currentItem.data[2],
+        fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
+        fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
+        threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
+        twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
+        oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
+      };
+      this.setState({ currentItem: betterCurrentItem });
+    });
   }
 
   grabReviewData(reviewData, cb) {
@@ -63,7 +61,12 @@ class App extends React.Component {
   }
 
   handleSubmitReview(reviewData) {
-    this.grabReviewData(reviewData, this.handleGetCurrentItem(this.url));
+    this.grabReviewData(
+      reviewData,
+      this.handleGetCurrentItem(
+        `${this.url}/dist/?productID=${this.state.currentItem.id}`
+      )
+    );
     // needs to POST to server with all the information that comes with the review
     // rating, comments,
     // will need to be added to a db table with a user, review, product
@@ -100,13 +103,17 @@ class App extends React.Component {
         this.setState(
           { currentItem: { id: event.target.getAttribute("data-id") } },
           () => {
-            this.handleGetCurrentItem(this.url);
+            this.handleGetCurrentItem(
+              `${this.url}/dist/?productID=${this.state.currentItem.id}`
+            );
           }
         );
       }
     });
 
-    this.handleGetCurrentItem(this.url);
+    this.handleGetCurrentItem(
+      `${this.url}/dist/?productID=${this.state.currentItem.id}`
+    );
   }
 
   render() {
