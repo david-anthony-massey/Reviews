@@ -92,6 +92,24 @@ class LeafRatingComponent extends React.Component {
         textAlign: "center",
         alignSelf: "center"
       };
+    } else if (this.props.type === "enterReview") {
+      starHeight = "25";
+      starWidth = "20";
+      extraInfo = round(this.props.featureReview.rating, 1);
+      extraInfoStyle = {
+        font: "Gill Sans",
+        fontSize: 15,
+        textAlign: "center",
+        alignSelf: "center",
+        marginLeft: "10px"
+      };
+      blockSize = {
+        width: "150px",
+        height: "60px",
+        display: "flex",
+        textAlign: "center",
+        alignSelf: "center"
+      };
     }
 
     let fullStars = (

@@ -14,12 +14,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentItem: { id: 3 },
+      currentItem: { id: 1 },
       currentReviewWord: null,
       currentReviewOrder: "random"
     };
 
-    this.url = `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/dist/?productID=${this.state.currentItem.id}`;
+    // this url needs to be the deployment address
+    this.url = `Canadaamazon-stretch.28zuhv6c2t.us-east-2.elasticbeanstalk.com/`;
 
     this.handleGetCurrentItem = this.handleGetCurrentItem.bind(this);
     this.handleCommentReviews = this.handleCommentReviews.bind(this);
@@ -30,37 +31,46 @@ class App extends React.Component {
     this.handleStartReview = this.handleStartReview.bind(this);
     this.handleSubmitReview = this.handleSubmitReview.bind(this);
     this.handleUploadImages = this.handleUploadImages.bind(this);
+    this.grabReviewData = this.grabReviewData.bind(this);
   }
 
   handleGetCurrentItem(url) {
-    Axios.get(url).then(currentItem => {
-      let betterCurrentItem = {
-        id: currentItem.data[0]["id"],
-        name: currentItem.data[0]["name"],
-        description: currentItem.data[0]["DESCRIPTION"],
-        price: currentItem.data[0]["price"],
-        category_id: currentItem.data[0]["category_id"],
-        rating: currentItem.data[1]["AVG(rating)"],
-        totalReviews: currentItem.data[1]["COUNT(rating)"],
-        reviews: currentItem.data[2],
-        fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
-        fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
-        threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
-        twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
-        oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
-      };
-      this.setState({ currentItem: betterCurrentItem });
-    });
+    Axios.get(`${url}dist/?productID=${this.state.currentItem.id}`).then(
+      currentItem => {
+        console.log(currentItem);
+        let betterCurrentItem = {
+          id: currentItem.data[0]["id"],
+          name: currentItem.data[0]["name"],
+          description: currentItem.data[0]["DESCRIPTION"],
+          price: currentItem.data[0]["price"],
+          category_id: currentItem.data[0]["category_id"],
+          rating: currentItem.data[1]["AVG(rating)"],
+          totalReviews: currentItem.data[1]["COUNT(rating)"],
+          reviews: currentItem.data[2],
+          fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
+          fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
+          threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
+          twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
+          oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
+        };
+        this.setState({ currentItem: betterCurrentItem });
+      }
+    );
   }
 
-  handleSubmitReview() {
+  grabReviewData(reviewData, cb) {
+    Axios.post(`${this.url}add_review`, { reviewData }).then(cb);
+  }
+
+  handleSubmitReview(reviewData, cb) {
+    this.grabReviewData(reviewData, cb);
     // needs to POST to server with all the information that comes with the review
     // rating, comments,
     // will need to be added to a db table with a user, review, product
   }
 
   handleStartReview() {
-    // redirect to a review making page
+    // opens up a review making page
   }
 
   handleUploadImages() {
@@ -115,7 +125,10 @@ class App extends React.Component {
           >
             <Cell area="review_mettrics">
               <div>
-                <CustomerReviewSummary currentItem={this.state.currentItem} />
+                <CustomerReviewSummary
+                  currentItem={this.state.currentItem}
+                  handleSubmitReview={this.handleSubmitReview}
+                />
               </div>
             </Cell>
             <Cell area="customer_images">

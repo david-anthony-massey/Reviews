@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700");
 
-.review__media-upload-square-button-container {
+.ryp__media-upload-square-button-container {
   border: 2px solid #aab7b8;
   border-style: dashed;
   background-color: #fafafa;
@@ -9,6 +9,15 @@
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+}
+
+.ryp__util__hidden {
+  display: none;
+}
+
+.ryp__desktop {
+  width: 90px;
+  height: 90px;
 }
 
 .dv-star-rating {
@@ -99,4 +108,8 @@ label {
   line-height: 19px;
   font-family: "Ubuntu", Arial, sans-serif;
   color: #555;
+}
+
+.popover {
+  max-width: 700px !important;
 }

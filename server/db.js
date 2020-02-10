@@ -131,6 +131,18 @@ const seedTableReviews = () => {
 
 //refactor as 1 query with left join
 
+const addReview = (reviewData, callback) => {
+  connection.query(
+    `INSERT INTO CanadaAmazon.Reviews ("user_id", "product_id", "review_title", "review_text", "rating", "date_created") VALUES (${reviewData.user_id}, ${reviewData.product_id}, ${reviewData.review_title}, ${reviewData.review_text}, ${reviewData.rating}, now())`,
+    (err, data) => {
+      if (err) throw err;
+      else {
+        callback(null, data);
+      }
+    }
+  );
+};
+
 const getCurrentItem = (productID, callback) => {
   connection.query(
     `SELECT * FROM Products WHERE id="${productID}"`,
@@ -143,7 +155,7 @@ const getCurrentItem = (productID, callback) => {
             if (err) throw err;
             else {
               connection.query(
-                `SELECT user_id, review_title, review_text, rating, date_created FROM Reviews WHERE product_id="${productID}" LIMIT 100`,
+                `SELECT DATE_FORMAT(date_created , '%b %D, %Y') AS date FROM Reviews WHERE product_id="${productID}" LIMIT 100`,
                 (err, data3) => {
                   if (err) throw err;
                   else {
@@ -168,4 +180,4 @@ const getCurrentItem = (productID, callback) => {
   );
 };
 
-module.exports = { getCurrentItem };
+module.exports = { getCurrentItem, addReview };

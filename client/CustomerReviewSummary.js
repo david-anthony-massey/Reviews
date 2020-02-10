@@ -2,6 +2,9 @@ import React from "react";
 import LeafRatingComponent from "./LeafRatingComponent";
 import { Grid, Cell } from "styled-css-grid";
 import ReviewBars from "./ReviewBars";
+import Popover from "react-bootstrap/Popover";
+import ReviewPage from "./ReviewPage";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 class CustomerReviewSummary extends React.Component {
   constructor(props) {
@@ -106,22 +109,37 @@ class CustomerReviewSummary extends React.Component {
         >
           How about lettin others know what cha think?
         </div>
-        <button
-          style={{
-            width: "300px"
-          }}
+        <OverlayTrigger
+          trigger="click"
+          placement="right"
+          overlay={
+            <Popover id="review-input-popover" style={{ width: "700px" }}>
+              <Popover.Title> How'd you like it David M.? </Popover.Title>
+              <Popover.Content>
+                <ReviewPage
+                  handleSubmitReview={this.props.handleSubmitReview}
+                  currentItem={this.props.currentItem}
+                />
+              </Popover.Content>
+            </Popover>
+          }
         >
-          {" "}
-          <p
+          <button
             style={{
-              fontSize: 13,
-              alignSelf: "center",
-              marginBottom: 0
+              width: "300px"
             }}
           >
-            Write a customer review
-          </p>
-        </button>
+            <p
+              style={{
+                fontSize: 13,
+                alignSelf: "center",
+                marginBottom: 0
+              }}
+            >
+              Write a customer review
+            </p>
+          </button>
+        </OverlayTrigger>
       </div>
     );
   }

@@ -22,6 +22,16 @@ app.get("/dist", urlencodedParser, (req, res) => {
   });
 });
 
+app.post("/add_review", urlencodedParser, (req, res) => {
+  db.addReview(req.params.reviewData, (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.send(data);
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`I'm now listening on port ${PORT}!`);
 });
