@@ -12,47 +12,23 @@ class CustomerImages extends React.Component {
       <div style={{ marginBottom: "0px" }}>
         <div>Customer Images</div>
         <Grid columns={"153px 153px 153px 153px"} justifyContent="start">
-          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
+          <Cell middle>
+            <div>
               <img src="https://picsum.photos/153?random=4" />
             </div>
           </Cell>
-          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
+          <Cell middle>
+            <div>
               <img src="https://picsum.photos/153?random=1" />
             </div>
           </Cell>
-          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
+          <Cell middle>
+            <div>
               <img src="https://picsum.photos/153?random=2" />
             </div>
           </Cell>
-          <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
+          <Cell middle>
+            <div>
               <img src="https://picsum.photos/153?random=3" />
             </div>
           </Cell>
