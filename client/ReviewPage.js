@@ -42,50 +42,34 @@ export default class ReviewPage extends React.Component {
         <h4>Overall rating</h4>
         <EditableRatingComponent
           totalStars={5}
-          full={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
-          }
-          empty={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
-          }
+          full={"/images/full_leaf.png"}
+          empty={"/images/empty_leaf.png"}
           width={"50px"}
           height={"65px"}
           starClickCallback={this.handleReviewRatingChange}
         />
         <h4>Rate features</h4>
-        <h6>Handle</h6>
+        <h6 style={{ alignSelf: "center" }}>Handle</h6>
         <EditableRatingComponent
           totalStars={5}
-          full={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
-          }
-          empty={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
-          }
+          full={"/images/full_leaf.png"}
+          empty={"/images/empty_leaf.png"}
           width={"40px"}
           height={"45px"}
         />
-        <h6>Appearance</h6>
+        <h6 style={{ alignSelf: "center" }}>Appearance</h6>
         <EditableRatingComponent
           totalStars={5}
-          full={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
-          }
-          empty={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
-          }
+          full={"/images/full_leaf.png"}
+          empty={"/images/empty_leaf.png"}
           width={"40px"}
           height={"45px"}
         />
-        <h6>Smell</h6>
+        <h6 style={{ alignSelf: "center" }}>Smell</h6>
         <EditableRatingComponent
           totalStars={5}
-          full={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
-          }
-          empty={
-            "http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
-          }
+          full={"/images/full_leaf.png"}
+          empty={"/images/empty_leaf.png"}
           width={"40px"}
           height={"45px"}
         />
@@ -127,11 +111,12 @@ export default class ReviewPage extends React.Component {
       We're sorry if you didn't like it. Even if it wasn't our fault!`}
           id="review-text"
           ref={ref1}
-          style={{ width: "600px", height: "400px", marginBottom: "50px" }}
+          style={{ width: "500px", height: "300px", marginBottom: "50px" }}
           onChange={this.handleReviewTextChange}
         ></textarea>
         <button
           href={"#"}
+          style={{ alignSelf: "center" }}
           onClick={() => {
             this.props.handleSubmitReview({
               review_text: this.state.review_text,
@@ -140,6 +125,7 @@ export default class ReviewPage extends React.Component {
               user_id: 1,
               product_id: this.props.currentItem.id
             });
+            this.props.togglePopover();
           }}
         >
           Submit Review

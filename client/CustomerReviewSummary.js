@@ -11,22 +11,20 @@ class CustomerReviewSummary extends React.Component {
     super(props);
     this.props = props;
 
-    this.hidePopover = this.hidePopover.bind(this);
+    this.state = {
+      show: false
+    };
+
+    this.togglePopover = this.togglePopover.bind(this);
   }
 
-  hidePopover(ref) {
-    this.refs.overlay.handleHide();
+  togglePopover() {
+    this.setState({ show: !this.state.show });
   }
 
   render() {
     return (
-      <div
-        style={{
-          width: "300px",
-          height: "868px",
-          marginLeft: "18px"
-        }}
-      >
+      <div className="review-summary">
         <h4>Customer Reviews</h4>
         <LeafRatingComponent currentItem={this.props.currentItem} type="main" />
         <div
@@ -39,15 +37,7 @@ class CustomerReviewSummary extends React.Component {
         {/* need to make a 3X2 grid */}
         <Grid columns={"150px 150px"} justifyContent="space-around">
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
-              Handle
-            </div>
+            <div className="review-feature">Handle</div>
           </Cell>
           <Cell
             center
@@ -61,15 +51,7 @@ class CustomerReviewSummary extends React.Component {
             />
           </Cell>
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
-              Smell
-            </div>
+            <div className="review-feature">Smell</div>
           </Cell>
           <Cell
             center
@@ -83,15 +65,7 @@ class CustomerReviewSummary extends React.Component {
             />
           </Cell>
           <Cell middle style={{ display: "flex", verticalAlign: "middle" }}>
-            <div
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                verticalAlign: "middle"
-              }}
-            >
-              Appearance
-            </div>
+            <div className="review-feature">Appearance</div>
           </Cell>
           <Cell
             center
@@ -119,6 +93,7 @@ class CustomerReviewSummary extends React.Component {
           ref="overlay"
           trigger="click"
           placement="right"
+          rootClose={true}
           overlay={
             <Popover id="review-input-popover" style={{ width: "700px" }}>
               <Popover.Title> How'd you like it David M.? </Popover.Title>
@@ -126,7 +101,7 @@ class CustomerReviewSummary extends React.Component {
                 <ReviewPage
                   handleSubmitReview={this.props.handleSubmitReview}
                   currentItem={this.props.currentItem}
-                  hidePopover={this.hidePopover}
+                  togglePopover={document.body.click()}
                 />
               </Popover.Content>
             </Popover>

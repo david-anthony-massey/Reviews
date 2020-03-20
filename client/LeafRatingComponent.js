@@ -52,9 +52,7 @@ class LeafRatingComponent extends React.Component {
     } else if (this.props.type === "review") {
       starHeight = "25";
       starWidth = "20";
-      let stars = computeStars(
-        this.props.review.rating
-      );
+      let stars = computeStars(this.props.review.rating);
       emptyStarVal = stars[0];
       halfStarVal = stars[1];
       fullStarVal = stars[2];
@@ -118,7 +116,11 @@ class LeafRatingComponent extends React.Component {
         renderStarIcon={() => (
           <span>
             <img
-              src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
+              // Use if deployed with Amazon
+              // src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
+
+              //Use if running locally
+              src="/images/full_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
@@ -141,7 +143,10 @@ class LeafRatingComponent extends React.Component {
         renderStarIcon={() => (
           <span>
             <img
-              src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
+              // Use if deployed
+              // src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
+              // Use if running locally
+              src="/images/empty_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
@@ -159,7 +164,9 @@ class LeafRatingComponent extends React.Component {
         renderStarIcon={() => (
           <span>
             <img
-              src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/half_leaf.png"
+              // Use if deployed
+              // src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/half_leaf.png"
+              src="/images/half_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
