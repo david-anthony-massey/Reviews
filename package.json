@@ -7,7 +7,7 @@
     "test": "jest",
     "start_app": "webpack -d --watch",
     "start": "node server/index.js",
-    "make_db": "mysql -u root -p < /Users/reku68/Documents/GitHub/CanadaAmazon/server/schema.sql"
+    // "make_db": "mysql -u root -p < /Users/reku68/Documents/GitHub/CanadaAmazon/server/schema.sql"
   },
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "babel-loader": "^8.0.6",
     "file-loader": "^5.0.2",
     "live-server": "^1.2.1",
-    "mysql": "^2.17.1",
+    "mysql": "^2.18.1",
     "nodemon": "^1.19.4",
     "path": "^0.12.7",
     "webpack": "^4.32.2",
