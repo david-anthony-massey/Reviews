@@ -93,6 +93,7 @@ label {
 .review-rowA {
   display: flex;
   flex-direction: row;
+  margin-bottom: 30px;
 }
 
 .review-varified {
@@ -110,6 +111,19 @@ label {
   color: #555;
 }
 
-.popover {
+.show#review-input-popover {
   max-width: 700px !important;
+  display: block;
+}
+
+.review-summary {
+  width: 300px;
+  height: 868px;
+  margin-left: 18px;
+}
+
+.review-feature {
+  align-self: center;
+  text-align: center;
+  vertical-align: middle;
 }

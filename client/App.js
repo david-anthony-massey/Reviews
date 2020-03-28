@@ -20,7 +20,10 @@ class App extends React.Component {
     };
 
     // this url needs to be the deployment address
-    this.url = `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/`;
+    // this.url = `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/`;
+
+    // this is used for testing locally
+    this.url = `http://localhost:8081/`;
 
     this.handleGetCurrentItem = this.handleGetCurrentItem.bind(this);
     this.handleCommentReviews = this.handleCommentReviews.bind(this);
@@ -28,52 +31,46 @@ class App extends React.Component {
       this
     );
     this.handleSortReviewsByRating = this.handleSortReviewsByRating.bind(this);
-    this.handleStartReview = this.handleStartReview.bind(this);
     this.handleSubmitReview = this.handleSubmitReview.bind(this);
     this.handleUploadImages = this.handleUploadImages.bind(this);
     this.grabReviewData = this.grabReviewData.bind(this);
   }
 
-  handleGetCurrentItem(url) {
-    Axios.get(url).then(currentItem => {
-      console.log(currentItem);
-      let betterCurrentItem = {
-        id: currentItem.data[0]["id"],
-        name: currentItem.data[0]["name"],
-        description: currentItem.data[0]["DESCRIPTION"],
-        price: currentItem.data[0]["price"],
-        category_id: currentItem.data[0]["category_id"],
-        rating: currentItem.data[1]["AVG(rating)"],
-        totalReviews: currentItem.data[1]["COUNT(rating)"],
-        reviews: currentItem.data[2],
-        fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
-        fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
-        threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
-        twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
-        oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
-      };
-      this.setState({ currentItem: betterCurrentItem });
-    });
+  handleGetCurrentItem(url, cb) {
+    Axios.get(url)
+      .then(currentItem => {
+        let betterCurrentItem = {
+          id: currentItem.data[0]["id"],
+          name: currentItem.data[0]["name"],
+          description: currentItem.data[0]["DESCRIPTION"],
+          price: currentItem.data[0]["price"],
+          category_id: currentItem.data[0]["category_id"],
+          rating: currentItem.data[1]["AVG(rating)"],
+          totalReviews: currentItem.data[1]["COUNT(rating)"],
+          reviews: currentItem.data[2],
+          fiveLeafReviews: currentItem.data[3][0]["COUNT(rating)"],
+          fourLeafReviews: currentItem.data[3][1]["COUNT(rating)"],
+          threeLeafReviews: currentItem.data[3][2]["COUNT(rating)"],
+          twoLeafReviews: currentItem.data[3][3]["COUNT(rating)"],
+          oneLeafReviews: currentItem.data[3][4]["COUNT(rating)"]
+        };
+        this.setState({ currentItem: betterCurrentItem });
+      })
+      .then(cb);
   }
 
   grabReviewData(reviewData, cb) {
     Axios.post(`${this.url}add_review`, reviewData).then(cb);
   }
 
-  handleSubmitReview(reviewData) {
+  handleSubmitReview(reviewData, cb) {
     this.grabReviewData(
       reviewData,
       this.handleGetCurrentItem(
-        `${this.url}dist/?productID=${this.state.currentItem.id}`
+        `${this.url}dist/?productID=${this.state.currentItem.id}`,
+        cb
       )
     );
-    // needs to POST to server with all the information that comes with the review
-    // rating, comments,
-    // will need to be added to a db table with a user, review, product
-  }
-
-  handleStartReview() {
-    // opens up a review making page
   }
 
   handleUploadImages() {
