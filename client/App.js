@@ -20,10 +20,10 @@ class App extends React.Component {
     };
 
     // this url needs to be the deployment address
-    // this.url = `http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/`;
+    this.url = `https://saskatchewanazon-reviews.herokuapp.com/`;
 
     // this is used for testing locally
-    this.url = `http://localhost:8081/`;
+    // this.url = `http://localhost:8081/`;
 
     this.handleGetCurrentItem = this.handleGetCurrentItem.bind(this);
     this.handleCommentReviews = this.handleCommentReviews.bind(this);
