@@ -5,10 +5,11 @@ const {
 } = require("../dummydata/CanadianAPISorryEh");
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
+  host: "mybb.cfpgvexeasco.us-east-2.rds.amazonaws.com",
+  user: "reku68",
   password: "password",
-  database: "Canada_Amazon"
+  database: "canadaamazon",
+  port: 3306
 });
 
 connection.connect(err => {
