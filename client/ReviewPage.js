@@ -52,24 +52,24 @@ export default class ReviewPage extends React.Component {
         <h6 style={{ alignSelf: "center" }}>Handle</h6>
         <EditableRatingComponent
           totalStars={5}
-          full={"/images/full_leaf.png"}
-          empty={"/images/empty_leaf.png"}
+          full={"https://saskatchewanazon-reviews.herokuapp.com/images/full_leaf.png"}
+          empty={"https://saskatchewanazon-reviews.herokuapp.com/images/empty_leaf.png"}
           width={"40px"}
           height={"45px"}
         />
         <h6 style={{ alignSelf: "center" }}>Appearance</h6>
         <EditableRatingComponent
           totalStars={5}
-          full={"/images/full_leaf.png"}
-          empty={"/images/empty_leaf.png"}
+          full={"https://saskatchewanazon-reviews.herokuapp.com/images/full_leaf.png"}
+          empty={"https://saskatchewanazon-reviews.herokuapp.com/images/empty_leaf.png"}
           width={"40px"}
           height={"45px"}
         />
         <h6 style={{ alignSelf: "center" }}>Smell</h6>
         <EditableRatingComponent
           totalStars={5}
-          full={"/images/full_leaf.png"}
-          empty={"/images/empty_leaf.png"}
+          full={"https://saskatchewanazon-reviews.herokuapp.com/images/full_leaf.png"}
+          empty={"https://saskatchewanazon-reviews.herokuapp.com/images/empty_leaf.png"}
           width={"40px"}
           height={"45px"}
         />

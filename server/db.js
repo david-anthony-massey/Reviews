@@ -59,6 +59,20 @@ const seedTableCategories = () => {
 };
 //seedTableCategories();
 
+const seedProductImagesReviews = () => {
+  let sql = "INSERT INTO Products (rating, imgURL) VALUES ?";
+  let values = [];
+
+  for (let i = 0; i < dummyData.length; i++) {
+    values.push([3.2, dummyData[i]["imgUrls"][0]]);
+  }
+
+  connection.query(sql, [values], function(err) {
+    if (err) throw err;
+  });
+};
+//seedProductImagesReviews();
+
 const seedTableProducts = () => {
   let sql =
     "INSERT INTO Products (name, description, price, category_id) VALUES ?";

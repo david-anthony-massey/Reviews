@@ -749,7 +749,7 @@ const dummyData = [
     price: 135.0,
     category_id: 5,
     imgUrls: [
-      `ATN X-Sight 5-18 Smart Riflescope w/1080p Video, Night Mode, WiFi, GPS, Image Stabilization, IOS and Android Apps`
+      `https://images-na.ssl-images-amazon.com/images/I/51AUFSIBATL._AC_.jpg`
     ]
   },
   {

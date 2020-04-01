@@ -120,7 +120,7 @@ class LeafRatingComponent extends React.Component {
               // src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/full_leaf.png"
 
               //Use if running locally
-              src="/images/full_leaf.png"
+              src="https://saskatchewanazon-reviews.herokuapp.com/images/full_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
@@ -146,7 +146,7 @@ class LeafRatingComponent extends React.Component {
               // Use if deployed
               // src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/empty_leaf.png"
               // Use if running locally
-              src="/images/empty_leaf.png"
+              src="https://saskatchewanazon-reviews.herokuapp.com/images/empty_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
@@ -166,7 +166,7 @@ class LeafRatingComponent extends React.Component {
             <img
               // Use if deployed
               // src="http://canadaamazon-env.28zuhv6c2t.us-east-2.elasticbeanstalk.com/images/half_leaf.png"
-              src="/images/half_leaf.png"
+              src="https://saskatchewanazon-reviews.herokuapp.com/images/half_leaf.png"
               alt="test"
               width={starWidth}
               height={starHeight}
