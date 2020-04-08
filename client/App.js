@@ -63,12 +63,11 @@ class App extends React.Component {
     Axios.post(`${this.url}add_review`, reviewData).then(cb);
   }
 
-  handleSubmitReview(reviewData, cb) {
+  handleSubmitReview(reviewData) {
     this.grabReviewData(
       reviewData,
       this.handleGetCurrentItem(
-        `${this.url}dist/?productID=${this.state.currentItem.id}`,
-        cb
+        `${this.url}dist/?productID=${this.state.currentItem.id}`
       )
     );
   }
