@@ -141,7 +141,7 @@ export default class ReviewPage extends React.Component {
               user_id: 1,
               product_id: this.props.currentItem.id
             });
-            this.props.togglePopover();
+            this.props.togglePopover;
           }}
         >
           Submit Review
