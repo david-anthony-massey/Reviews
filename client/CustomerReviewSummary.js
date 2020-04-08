@@ -101,7 +101,7 @@ class CustomerReviewSummary extends React.Component {
                 <ReviewPage
                   handleSubmitReview={this.props.handleSubmitReview}
                   currentItem={this.props.currentItem}
-                  togglePopover={document.body.click()}
+                  togglePopover={document.body.click}
                 />
               </Popover.Content>
             </Popover>
