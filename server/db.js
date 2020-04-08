@@ -151,7 +151,7 @@ const addReview = (reviewData, callback) => {
     (err, data) => {
       if (err) throw err;
       else {
-        this.getCurrentItem(reviewData.product_id, callback);
+        getCurrentItem(reviewData.product_id, callback);
       }
     }
   );
