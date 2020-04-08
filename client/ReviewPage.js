@@ -134,16 +134,14 @@ export default class ReviewPage extends React.Component {
           href={"#"}
           style={{ alignSelf: "center" }}
           onClick={() => {
-            this.props.handleSubmitReview(
-              {
-                review_text: this.state.review_text,
-                review_title: this.state.review_title,
-                rating: this.state.rating,
-                user_id: 1,
-                product_id: this.props.currentItem.id
-              },
-              this.props.togglePopover()
-            );
+            this.props.handleSubmitReview({
+              review_text: this.state.review_text,
+              review_title: this.state.review_title,
+              rating: this.state.rating,
+              user_id: 1,
+              product_id: this.props.currentItem.id
+            });
+            this.props.togglePopover();
           }}
         >
           Submit Review
